@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h4>
+    <small class="text-muted">List Struktural</small>
+    <small class="text-muted" style="float:right">
+    
+       <a href="{% url 'surat:formstruktural_admin' %}" class="btn btn-danger"> Tambah data</a>
+    </small>
+  </h4>
+  <div class="table-responsive">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+       <th>Nama</th>
+                                                            <th>Jabatan</th>
+                                                            <th>email</th>
+                                                            <th>Username</th>
+                                                            <th>Date</th>
+                                                          
+        <th scope="col">#</th>
+
+        
+                                                            
+      </tr>
+    </thead>
+    {% for dt in data %}
+      <tbody>
+        <tr>
+          <td scope="col">{{ forloop.counter }} .</td>
+          <td>{{dt.nama}}</td>
+                                                                  <td>
+                                                                  {{dt.jabatan}}
+                                                                  </td>
+                                                                  <td>
+                                                                  {{dt.email}}
+                                                                  </td>
+                                                                  <td>
+                                                                  {{dt.user.username}}
+                                                                  </td>
+          <td>{{dt.date_created|timesince}}</td>
+          <td>
+            <a href="{% url 'surat:editstruktural_admin' dt.id %}" class="btn btn-info">Edit</a> | 
+            <a onclick="return confirm('Delete data?')" class="btn btn-danger" href="{% url 'surat:struktutal_delete' dt.id %}">Hapus</a>
+          </td>
+        </tr>
+      </tbody>
+    {% endfor %}
+  </table>
+  </div>
+{% endblock content %}  

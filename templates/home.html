@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block content %}
+  <p>Hello {{user.username|title}}, Silakan gunakan aplikasi surat menyurat dengan benar dan baik</p>
+  <div class="row">
+  <div class="col-sm-6 mb-3">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Jumlah Surat Masuk</h5>
+        <p class="card-text">{{jmlSuratMasuk}}</p>
+        <a href="{% url 'surat:surat_masuk_list' %}" class="btn btn-primary">Surat Masuk</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 mb-3">
+    <div class="card">
+      <div class="card-body">
+         <h5 class="card-title">Jumlah Surat Keluar</h5>
+        <p class="card-text">{{jmlSuratKeluar}}</p>
+        <a href="{% url 'surat:surat_keluar_list' %}" class="btn btn-primary">Surat Keluar</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 mb-3">
+    <div class="card">
+      <div class="card-body">
+         <h5 class="card-title">Jumlah Instansi</h5>
+        <p class="card-text">{{jmlInstansi}}</p>
+        <a href="{% url 'surat:struktural_admin' %}" class="btn btn-primary">Instansi</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 mb-3">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Data Struktural</h5>
+        <p class="card-text">{{jmlStruktural}}</p>
+        <a href="{% url 'surat:instansi_list' %}" class="btn btn-primary">Struktural</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 mb-3">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Data Disposisi</h5>
+        <p class="card-text">{{jmlDisposisi}}</p>
+        <a href="{% url 'surat:instansi_list' %}" class="btn btn-primary">Disposisi Masuk</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 mb-3">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Data Disposisi</h5>
+        <p class="card-text">{{jmlDisposisikeluar}}</p>
+        <a href="{% url 'surat:disposisi_admin_keluar' %}" class="btn btn-primary">Disposisi Keluar</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}  

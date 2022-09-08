@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+ 
+  <h4>
+    <small class="text-muted">List Disposisi Surat Keluar</small>
+   
+  </h4>
+  <div class="table-responsive">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Batas Waktu Penyelesaian</th>
+        <th scope="col">Isi Disposisi</th>
+        <th scope="col">catatan</th>
+        <th scope="col">sifat_disposisi/Jasa</th>
+        <th scope="col">File</th>
+      
+        <th scope="col">Aksi</th>
+       
+      </tr>
+    </thead>
+    {% for dt in data %}
+      <tbody>
+        <tr>
+          <td scope="col">{{ forloop.counter }}</td>
+          <td>{{dt.batas_waktu}}</td>
+          <td>{{dt.isi_disposisi}}</td>
+          <td>{{dt.catatan}}</td>
+          <td>{{dt.sifat_disposisi}}</td>
+          <td>{% if dt.suratkeluar.file_surat_keluar %}
+            <span class="badge badge-warning"><a href="{{dt.suratkeluar.file_surat_keluar.url}}" target="_blank">File</a></span>
+          {% else %}
+  <span class="badge badge-danger">No File</span>
+          {% endif %}</td>
+          
+          <td>
+           <a href="{% url 'surat:cetak_disposisi_keluar' dt.suratkeluar.id %}" target="blank" class="btn btn-primary">Cetak</a>
+          </td>
+         
+        </tr>
+      </tbody>
+    {% endfor %}
+  </table>
+  </div>
+{% endblock content %}  

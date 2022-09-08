@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+  <p>Hello {{user.struktural.nama|title}}, sebagai {{user.struktural.jabatan}} Silakan gunakan aplikasi surat menyurat dengan benar dan baik</p>
+  <div class="row">
+  <div class="col-sm-6 mb-3">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Jumlah Surat Masuk</h5>
+        <p class="card-text">{{jmlSuratMasuk}}</p>
+        <a href="{% url 'surat:surat_masuk_list_struktural' %}" class="btn btn-primary">Surat Masuk</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 mb-3">
+    <div class="card">
+      <div class="card-body">
+         <h5 class="card-title">Jumlah Surat Keluar</h5>
+        <p class="card-text">{{jmlSuratKeluar}}</p>
+        <a href="{% url 'surat:surat_keluar_list_struktural' %}" class="btn btn-primary">Surat Keluar</a>
+      </div>
+    </div>
+  </div>
+  
+</div>
+{% endblock content %}  

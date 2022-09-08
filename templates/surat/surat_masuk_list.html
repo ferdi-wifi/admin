@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h4>
+    <small class="text-muted">List surat masuk</small>
+    <small class="text-muted" style="float:right">
+        <a href="{% url 'surat:surat_masuk_form' %}" class="btn btn-danger"> Tambah data</a>
+    </small>
+  </h4>
+  <div class="table-responsive">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nomor</th>
+        <th scope="col">Tanggal surat</th>
+        <th scope="col">Perihal</th>
+        <th scope="col">Pengirim/Jasa</th>
+        <th scope="col">Deksripsi</th>
+        <th scope="col">File</th>
+        <th scope="col">Asal instansi</th>
+     
+        <th scope="col">Tanggal masuk</th>
+        <th scope="col">Date</th>
+        <th scope="col">#</th>
+      </tr>
+    </thead>
+    {% for dt in data %}
+      <tbody>
+        <tr>
+          <td scope="col">{{ forloop.counter }}</td>
+          <td scope="row">{{ dt.nomor }}</td>
+          <td>{{dt.tgl_surat}}</td>
+          <td>{{dt.perihal}}</td>
+          <td>{{dt.pengirim}}</td>
+          <td>{{dt.deskripsi}}</td>
+          <td>{% if dt.file_surat_masuk %}
+            <span class="badge badge-warning"><a href="{{dt.file_surat_masuk.url}}" target="_blank">File</a></span>
+          {% else %}
+  <span class="badge badge-danger">No File</span>
+          {% endif %}</td>
+          <td>{{dt.asal_instansi}}</td>
+         
+          <td>{{dt.tgl_masuk}}</td>
+          <td>{{dt.created|timesince}}</td>
+          <td width="350">
+            <a href="{% url 'surat:surat_masuk_edit' dt.id %}" class="btn btn-info">Edit</a>
+            <a onclick="return confirm('Delete data?')" href="{% url 'surat:surat_masuk_delete' dt.id %}" class="btn btn-danger">Hapus</a>
+            
+            <a href="{% url 'surat:data_disposisi' dt.id %}" class="btn btn-warning">Disposisi</a>
+            <a href="{% url 'surat:cetak_disposisi' dt.id %}" target="blank" class="btn btn-primary">Cetak</a>
+           
+          </td>
+        </tr>
+      </tbody>
+    {% endfor %}
+  </table>
+  </div>
+
+
+
+{% endblock content %}
